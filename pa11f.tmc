@@ -1,10 +1,10 @@
 ﻿<[file][][]
     <[object][][]
-        <[int][Version][210]>
-        <[vec32array][ContactSpheres][ (2.459600 -1.371600 -1.503048 0.365931) (2.459600 1.371600 -1.503048 0.365931) (-3.331600 -1.371600 -1.503048 0.365931) (-3.331600 1.371600 -1.503048 0.365931) ]>
+        <[int][Version][210]>	
+        <[vec32array][ContactSpheres][ (2.459 -1.371 -1.778 0.366) (2.459 1.371 -1.778 0.366) (-3.331 -1.371 -1.778 0.366) (-3.331 1.371 -1.778 0.366) ]> 
         <[string8][DisplayName][Piper PA-11 Cub Special Float]>
 		<[string8][DescriptionTextEN][The Piper PA-11 Cub Special is a later production, two-place variant of the Piper J-3 Cub light propeller-driven aircraft, manufactured by Piper Aircraft. This particular model is powered by a 65hp engine and does not have an electrical system, which means you will need to hand crank the propeller.
-Aerofly FS 2 aircraft made by Jan-Hendrik Hanuschik (IPACS team member) and Krzysztof Kaniewski. 3D model by Adrian Fernandez Gomez (please visit www.alcala-sim.com).]>
+		Aerofly FS 2 aircraft made by Jan-Hendrik Hanuschik (IPACS team member) and Krzysztof Kaniewski. 3D model by Adrian Fernandez Gomez (please visit www.alcala-sim.com).]>
 		<[float64][WingSpan][10.9]>
 		<[float64][Mass][515.4]>
 		<[float64][MinimumSpeed]        [17.0]>
