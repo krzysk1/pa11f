@@ -1258,12 +1258,12 @@
                 <[tmvector3d][Pivot][ -0.8761 -4.4195 0.4899 ]>
             >
 
-            <[graphics_input][obj1Input_2][]
+            <[graphics_input][LeftAileronInput][]
                 <[uint32][InputID][LeftAileron.Output]>
                 <[float64][Scaling][-3.1831]>
             >
             <[graphics_mapping][obj1Mapping_31][]
-                <[string8][Input][obj1Input_2.Output]>
+                <[string8][Input][LeftAileronInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.036000) (1.0 0.0) ]>
             >
             <[graphics_translation][obj1Moving_31][]
@@ -1278,7 +1278,7 @@
             >
 
             <[graphics_mapping][obj1Mapping_36][]
-                <[string8][Input][obj1Input_2.Output]>
+                <[string8][Input][LeftAileronInput.Output]>
                 <[tmvector2d][Map][(-1.0 -0.008901) (1.0 0.010647)]>
             >
             <[graphics_rotation][obj1Rotate_36][]
@@ -1287,7 +1287,7 @@
                 <[tmvector3d][Pivot][ -0.8615 3.4864 0.5092 ]>
             >
             <[graphics_mapping][obj1Mapping_35][]
-                <[string8][Input][obj1Input_2.Output]>
+                <[string8][Input][LeftAileronInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.042892) (1.0 0.0) ]>
             >
             <[graphics_translation][obj1Moving_35][]
@@ -1302,12 +1302,12 @@
                 <[string8][InputTransform][obj1Moving_35.Output]>
             >
 
-            <[graphics_input][obj1Input_3][]
+            <[graphics_input][RightAileronInput][]
                 <[uint32][InputID][RightAileron.Output]>
                 <[float64][Scaling][-3.1831]>
             >
             <[graphics_mapping][obj1Mapping_40][]
-                <[string8][Input][obj1Input_3.Output]>
+                <[string8][Input][RightAileronInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.0) (1.0 0.045300)]>
             >
             <[graphics_translation][obj1Moving_40][]
@@ -1322,7 +1322,7 @@
             >
 
             <[graphics_mapping][obj1Mapping_45][]
-                <[string8][Input][obj1Input_3.Output]>
+                <[string8][Input][RightAileronInput.Output]>
                 <[tmvector2d][Map][(-1.0 0.016406) (1.0 -0.007679)]>
             >
             <[graphics_rotation][obj1Rotate_45][]
@@ -1331,7 +1331,7 @@
                 <[tmvector3d][Pivot][ -0.9013 -3.4859 0.5162 ]>
             >
             <[graphics_mapping][obj1Mapping_44][]
-                <[string8][Input][obj1Input_3.Output]>
+                <[string8][Input][RightAileronInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.0) (1.0 0.040180)]>
             >
             <[graphics_translation][obj1Moving_44][]
@@ -1356,12 +1356,12 @@
                 <[tmvector3d][Pivot][ -4.5683 -0.0001 0.7498 ]>
                 <[float64][AngleMax][1.0]>
             >
-            <[graphics_input][obj1Input_1][]
+            <[graphics_input][RudderInput][]
                 <[uint32][InputID][Rudder.Output]>
                 <[float64][Scaling][-1.6852]>
             >
             <[graphics_mapping][obj1Mapping_23][]
-                <[string8][Input][obj1Input_1.Output]>
+                <[string8][Input][RudderInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.0) (1.0 0.083892)]>
             >
             <[graphics_translation][obj1Moving_27][]
@@ -1456,7 +1456,7 @@
             >
 
             <[graphics_mapping][obj1Mapping_124][]
-                <[string8][Input][obj1Input_1.Output]>
+                <[string8][Input][RudderInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.106000) (1.0 0.0)]>
             >
             <[graphics_translation][obj1Moving_124][]
@@ -1470,7 +1470,7 @@
                 <[string8][InputTransform][obj1Moving_124.Output]>
             >
             <[graphics_mapping][obj1Mapping_128][]
-                <[string8][Input][obj1Input_1.Output]>
+                <[string8][Input][RudderInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.104800) (1.0 0.0) ]>
             >
             <[graphics_translation][obj1Moving_128][]
@@ -1484,7 +1484,7 @@
                 <[string8][InputTransform][obj1Moving_128.Output]>
             >
             <[graphics_mapping][obj1Mapping_132][]
-                <[string8][Input][obj1Input_1.Output]>
+                <[string8][Input][RudderInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.106100) (1.0 0.0) ]>
             >
             <[graphics_translation][obj1Moving_132][]
@@ -1498,7 +1498,7 @@
                 <[string8][InputTransform][obj1Moving_132.Output]>
             >
             <[graphics_mapping][obj1Mapping_136][]
-                <[string8][Input][obj1Input_1.Output]>
+                <[string8][Input][RudderInput.Output]>
                 <[tmvector2d][Map][ (-1.0 0.105500) (1.0 0.0) ]>
             >
             <[graphics_translation][obj1Moving_136][]
