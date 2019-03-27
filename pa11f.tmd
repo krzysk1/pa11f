@@ -1119,11 +1119,11 @@
             // balance
             <[balance_indicator][BalanceIndicator][]
                 <[string8][Body][Fuselage]>
-                <[tmvector3d][R0][ 0.5946 0.0037 -0.1932 ]>
+                <[tmvector3d][R0][ 0.59464 0.0042 -0.18799 ]>
                 <[float64][Radius][0.115]>
-                <[float64][Limit][0.017]>
+                <[float64][Limit][0.017]>			
             >
-            <[output][BalanceIndicatorDeflection][]
+            <[output][BalanceIndicatorDeviation][]
                 <[string8][Input][BalanceIndicator.Output]>
             >
 
@@ -1872,12 +1872,12 @@
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][OrientationID][Fuselage.Q]>
                 <[string8][GeometryList][ balanceindicatorball ]>
-                <[tmvector3d][Axis][ -1.0 0.0 0.0 ]>
-                <[tmvector3d][Pivot][ 0.5946 0.0037 -0.1932 ]>
-                <[float64][AngleMax][0.09]>
-                <[string8][AngleID][BalanceIndicatorDeflection.Output]>
+                <[tmvector3d][Axis][ -0.993307 0.0 0.115501 ]>
+                <[tmvector3d][Pivot][ 0.612228 0.0037 -0.098953 ]>
+                <[float64][AngleMax][0.2]>
+                <[string8][AngleID][BalanceIndicatorDeviation.Output]>
             >
-
+			
             // brakes
             <[hingedbodygraphics][PilotLeftBrake][]
                 <[uint32][PositionID][Fuselage.R]>
