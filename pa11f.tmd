@@ -695,8 +695,8 @@
             >
 			
 			// waterrudder
-            <[input_default][WaterInput][]
-                <[string8][Input][Controls.Flaps]>
+            <[input_lever][WaterInput][]
+                <[string8][Input][Controls.WaterRudderDeploy]>
             >			
             <[servoclassic][WaterRudder][]
                 <[string8][Input][WaterInput.Output]>
@@ -1248,7 +1248,7 @@
                 <[uint32][OrientationID][Fuselage.Q]>
                 <[string8][GeometryList][ spinner ]>
                 <[uint32][AngleID][Propeller.RotationAngle]>
-                <[tmvector3d][Axis][ -1.0 0.0 0.0 ]>
+                <[tmvector3d][Axis][ 1.0 0.0 0.0 ]>
                 <[tmvector3d][Pivot][ 1.718 -0.0058 -0.3018 ]>
             >
             <[graphics_propeller_blade][PropellerBlade0][]
@@ -1258,10 +1258,11 @@
                 <[uint32][AngleID][Propeller.RotationAngle]>
                 <[uint32][RotationSpeedID][Propeller.RotationSpeed]>
                 <[uint32][DamageID][Propeller.Damaged]>
-                <[tmvector3d][Axis][ 1.0 0.0 0.0 ]>
+                <[tmvector3d][Axis][ -1.0 0.0 0.0 ]>
                 <[tmvector3d][Pivot][ 1.718 -0.0058 -0.3018 ]>
                 <[float64][Radius][1.0]>
                 <[string8][InputPitch][0.0]>
+                <[float64][RotationSpeedFade][70.0]>
             >
             <[graphics_propeller_blade][PropellerBlade1][]
                 <[uint32][PositionID][Fuselage.R]>
@@ -1270,10 +1271,11 @@
                 <[uint32][AngleID][Propeller.RotationAngle]>
                 <[uint32][RotationSpeedID][Propeller.RotationSpeed]>
                 <[uint32][DamageID][Propeller.Damaged]>
-                <[tmvector3d][Axis][ 1.0 0.0 0.0 ]>
+                <[tmvector3d][Axis][ -1.0 0.0 0.0 ]>
                 <[tmvector3d][Pivot][ 1.718 -0.0058 -0.3018 ]>
                 <[float64][Radius][1.0]>
                 <[string8][InputPitch][0.0]>
+                <[float64][RotationSpeedFade][70.0]>
             >
             <[propellergraphics][Propeller][]
                 <[uint32][PositionID][Fuselage.R]>
@@ -1287,7 +1289,7 @@
                 <[uint32][BladeNumber][2]>
                 <[float64][Radius][1.0]>
                 <[float64][BladePitch][-0.5]>
-                <[float64][RotationSpeedFade][25.0]>
+                <[float64][RotationSpeedFade][90.0]>
             >
 
             // elevator
