@@ -528,8 +528,15 @@
                                     ( 20.0 0.0 )
                                     ( 40.0 1.0 ) ]>
             >
-            <[output_free][PropellerSpinningOutput][]
-                <[string8][Input][PropellerSpinning.Output]>
+            <[linear_interpolation][TooFastToRunAlong][]
+                <[string8][Input][PitotTube.GroundSpeed]>
+                <[tmvector2d][Map][ (4.0 0.0) (5.0 1.0) ]>
+            >
+            <[logic_or][PropellerCannotBeGrabbed][]
+                <[string8][Inputs][ PropellerSpinning.Output TooFastToRunAlong.Output]>
+            >
+            <[output_free][PropellerCannotBeGrabbedOutput][]
+                <[string8][Input][PropellerCannotBeGrabbed.Output]>
             >
             <[jointtorque][DriveShaft][]
                 <[string8][Body0][Fuselage]>
@@ -575,9 +582,16 @@
             // rec. cruise 2150 at 26.8 ingh manifold pressure
             // fuel consumption at cruise power 4.4 usgal per hour
             // dry weight 77kg
+            <[linear_interpolation][FuelPressureLow][]
+                <[string8][Input][MainFuelLine.Output]>
+                <[tmvector2d][Map][ (97000.0 0.0) (99000.0 1.0) ]>
+            >
+            <[product][ActualMixture][]
+                <[string8][Inputs][ 1.0 FuelPressureLow.Output ]>
+            >
             <[engine2][Engine][]
                 <[string8][InputThrottle]    [ThrottleLever.Output]>
-                <[string8][InputMixture]     [1.0]>
+                <[string8][InputMixture]     [ActualMixture.Output]>
                 <[string8][InputLeftMagneto] [LeftMagneto.Output]>
                 <[string8][InputRightMagneto][RightMagneto.Output]>
                 <[string8][RotationSpeed]    [DriveShaft.RotationSpeed]>
@@ -586,7 +600,7 @@
                 <[string8][InputAngle]       [PropellerJoint.Output]>
                 <[float64][InputTemperature] [EngineHousing.Output]>
                 <[float64][AddHeat]          [EngineHousing.AddHeat]>
-                <[float64][RotationInertia][1.1776]>
+                <[float64][RotationInertia][0.7]>
                 <[float64][ThrottleIdle][0.24]>
                 <[float64][Friction][180.0]>
                 <[float64][RatedRotationSpeed][240.85]>
@@ -620,28 +634,43 @@
 
             // max oil temperature 220F
             // min oil temperature for takeoff 90F
-            <[servolinear][EngineOilTemperature][]
-                <[string8][Input][1.0]>
-                <[float64][OutputSpeed][0.1]>
-                <[float64array][InputPosition][ 0.0 1.0 ]>
-                <[float64array][OutputPosition][ 0.0 0.35 ]>
-                <[float64][Position][0.35]>
+            <[linear_interpolation][OilTemperatureInput][]
+                <[string8][Input][DriveShaft.RotationSpeed]>
+                <[tmvector2d][Map][ (0.0 288.15) (52.4 310.9) (104.0 324.8) (209.4 349.8) (282.7 360.9) ]>
             >
-            <[output][EngineOilTemperatureNeedle][]
+            <[servoclassic][EngineOilTemperature][]
+                <[string8][Input][OilTemperatureInput.Output]>
+                <[float64][Speed][0.5]>
+                <[float64][P0][0.0]>
+                <[float64][P1][1.0]>
+                <[float64][P2][0.0]>
+                <[float64][P3][0.0]>
+                <[float64][Position][324.8]>
+            >
+            <[linear_interpolation][EngineOilTemperatureNeedleMapping][]
                 <[string8][Input][EngineOilTemperature.Output]>
+                <[tmvector2d][Map][ (277.59 -0.29) (310.927 -0.25) (366.48 0.07) (388.70 0.25) ]>
+            >
+            <[needle][EngineOilTemperatureNeedle][]
+                <[string8][Input][EngineOilTemperatureNeedleMapping.Output]>
+                <[float64][Speed][10.5]>
+                <[float64][Damping][1.0]>
             >
 
             // cruise oil pressure 20-40 lb/square inch
             // landing oil pressure above 10 lb/sq inch
-            <[servolinear][EngineOilPressure][]
-                <[string8][Input][1.0]>
-                <[float64][OutputSpeed][0.1]>
-                <[float64array][InputPosition][ 0.0 1.0 ]>
-                <[float64array][OutputPosition][ 0.0 0.35 ]>
-                <[float64][Position][0.35]>
+            <[linear_interpolation][EngineOilPressure][]
+                <[string8][Input][EngineOilTemperature.Output]>
+                <[tmvector2d][Map][ (0.0 0.0) (288.15 0.0) (310.9 689476.0) (324.8 517107.0) (349.8 448159.4) (360.9 413685.6) ]>
             >
-            <[output][EngineOilPressureNeedle][]
+            <[linear_interpolation][EngineOilPressureNeedleMapping][]
                 <[string8][Input][EngineOilPressure.Output]>
+                <[tmvector2d][Map][ (0.0 -0.33) (172369.0 -0.23) (344738.0 -0.07) (517107.0 0.08) (689476.0 0.29) ]>
+            >
+            <[needle][EngineOilPressureNeedle][]
+                <[string8][Input][EngineOilPressureNeedleMapping.Output]>
+                <[float64][Speed][10.5]>
+                <[float64][Damping][1.0]>
             >
 
             // throttle
@@ -680,6 +709,7 @@
             <[output_free][WaterRudderOutput][]
                 <[string8][Input][WaterRudder.Output]>
             >
+			
             // starter
             <[input_control][EngineStart][]
                 <[string8][Input][Controls.EngineStart]>
@@ -703,14 +733,14 @@
             >
 
             // primer
-            <[input_lever][PrimerInput][]
+            <[input_lever][PrimerLever][]
                 <[string8][Input][Controls.Primer]>
                 <[tmvector2d][Range][ 0.0 1.0 ]>
                 <[uint][Positions][21]>
                 <[float64][Value][0.0]>
             >
-            <[output_free][PrimerInputOutput][]
-                <[string8][Input][PrimerInput.Output]>
+            <[output_free][PrimerLeverOutput][]
+                <[string8][Input][PrimerLever.Output]>
             >
 
             // magnetos
@@ -803,14 +833,68 @@
             >
 
             // fuel level
-            <[integral][FuelQuantity][]
-                <[string8][Input][-0.000072]> // endurance 3.8 h
-                <[float64][Value][0.8]>
+            <[fuel_tank][FuelTank][]
+                <[float64][MaximumQuantity][35.1]>
+                <[float64][FillLevel][0.8]>
+                <[string8][InputPressure][TankFuelLine.Output]>
+                <[string8][AddFlow][TankFuelLine.AddFlow]>
             >
-            <[output_free][FuelQuantityOutput][]
-                <[uint32][Input][FuelQuantity.Output]>
+            <[output][FuelQuantity][]
+                <[uint32][Input][FuelTank.OutputLevel]>
             >
-			
+            <[fuel_line][TankFuelLine][]
+                <[float64][Pressure][101325.0]>
+            >
+            <[fuel_line_connection][FuselageGravityFeed][]
+                <[string8][Body][Fuselage]>
+                <[tmvector3d][R0][ -0.007859 0.636454 0.390173 ]>
+                <[tmvector3d][R1][  1.3 0.0 -0.6 ]>
+                <[string8][InputPressure0][TankFuelLine.Output]>
+                <[string8][InputPressure1][FeedFuelLine.Output]>
+                <[string8][AddFlow0]      [TankFuelLine.AddFlow]>
+                <[string8][AddFlow1]      [FeedFuelLine.AddFlow]>
+            >
+            <[fuel_line][FeedFuelLine][]
+                <[float64][Pressure][101325.0]>
+            >
+            <[fuel_valve][FuelCutOffValve][]
+                <[float64][Input][FuelSelector.Output]>
+                <[float64][InputEnable][1.0]>
+                <[string8][InputPressure0][FeedFuelLine.Output]>
+                <[string8][InputPressure1][FuelCutOffLine.Output]>
+                <[string8][AddFlow0][FeedFuelLine.AddFlow]>
+                <[string8][AddFlow1][FuelCutOffLine.AddFlow]>
+            >
+            <[differentiator][PrimerLeverSpeed][]
+                <[string8][Input][PrimerLever.Output]>
+            >
+            <[linear_interpolation][PrimerLeverPumping][]
+                <[string8][Input][PrimerLever.Output]>
+                <[tmvector2d][Map][ (-0.01 1.0) (0.0 0.0) (0.01 1.0) ]>
+            >
+            <[fuel_pump][PrimerHandPump][]
+                <[float64][Input][PrimerLeverPumping.Output]>
+                <[float64][MaximumDeltaPressure][6000.0]>
+                //<[float64][MinimumPressure][21325.0]>
+                <[string8][InputPressure0][FuelCutOffLine.Output]>
+                <[string8][InputPressure1][MainFuelLine.Output]>
+                <[string8][AddFlow0][FuelCutOffLine.AddFlow]>
+                <[string8][AddFlow1][MainFuelLine.AddFlow]>
+            >
+            <[fuel_line][FuelCutOffLine][]
+                <[float64][Pressure][101325.0]>
+            >
+            <[fuel_line][MainFuelLine][]
+                <[float64][Pressure][101325.0]>
+            >
+            <[fuel_leak][FuelConsumption][]
+                <[float64][InputFlow][Engine.FuelFlow]>
+                <[float64][MaximumFlow][0.005]>
+                <[string8][InputPressure0][MainFuelLine.Output]>
+                //<[string8][InputPressure1][PitotTube.StaticPressure]>
+                <[string8][AddFlow][MainFuelLine.AddFlow]>
+            >
+
             // fuel system end
 
 
@@ -1097,31 +1181,12 @@
                 <[string8][Message][Aircraft.Altitude]>
             >
 
-            // vertical speed
-            <[vertical_speed_indicator][VerticalSpeedIndicator][]
-                <[string8][StaticPressure][PitotTube.StaticPressure]>
-            >
-            <[output][VerticalSpeedIndicatorNeedle][]
-                <[string8][Input][VerticalSpeedIndicator.VerticalSpeed]>
-            >
-
-            // attitude
-            <[attitude_indicator][AttitudeIndicator][]
-                <[string8][Body][Fuselage]>
-            >
-            <[output][BankAngle][]
-                <[string8][Input][AttitudeIndicator.BankAngle]>
-            >
-            <[output][PitchAngle][]
-                <[string8][Input][AttitudeIndicator.PitchAngle]>
-            >
-
             // balance
             <[balance_indicator][BalanceIndicator][]
                 <[string8][Body][Fuselage]>
                 <[tmvector3d][R0][ 0.59464 0.0042 -0.18799 ]>
                 <[float64][Radius][0.115]>
-                <[float64][Limit][0.017]>			
+                <[float64][Limit][0.017]>
             >
             <[output][BalanceIndicatorDeviation][]
                 <[string8][Input][BalanceIndicator.Output]>
@@ -2016,14 +2081,14 @@
 
             // pilot
             <[rigidbodygraphics][PilotBody][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][PositionID][PilotMass.R]>
+                <[uint32][OrientationID][PilotMass.Q]>
                 <[string8][GeometryList][ pilotbody pilothead ]>
                 <[uint32][ShowInside][ CameraCopilot ]>
             >
             <[rigidbodygraphics][PassengerBody][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][OrientationID][Fuselage.Q]>
+                <[uint32][PositionID][CopilotMass.R]>
+                <[uint32][OrientationID][CopilotMass.Q]>
                 <[string8][GeometryList][ passengerbody passengerhead ]>
                 <[uint32][ShowInside][ CameraPilot ]>
             >
