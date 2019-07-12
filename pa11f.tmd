@@ -323,7 +323,37 @@
                 <[float64][Clz][0.7]>
                 <[float64][Cm][0.15]>
             >
-
+            <[aerofuselage][RightSwimmerAero][]
+                <[string8][Body][SwimmerBody]>
+                <[float64][StationX][  2.1752 1.5091 0.9003 0.1050 -3.1827 ]>
+                <[float64][StationY][  -1.2126 -1.2126 -1.2126 -1.2126 -1.2126 ]>
+                <[float64][StationZ][  -1.6166 -1.82 -1.82 -1.78 -1.7119 ]>
+                <[float64][StationWidth][  0.08 0.5312 0.5727 0.5442 0.2527 ]>
+                <[float64][StationHeight][  0.03 0.4494 0.4375 0.4055 0.2029 ]>
+                <[uint32][StationShape][  1 1 1 1 1 ]>
+                <[float64][Cdx][ 0.0750 ]>
+                <[float64][Cdy][ 1.0 ]>
+                <[float64][Cdz][ 1.5 ]>
+                <[float64][Cly][ 1.5 ]>
+                <[float64][Clz][ 1.5 ]>
+                <[float64][Cm][ 1.0 ]>
+            >
+            <[aerofuselage][LeftSwimmerAero][]
+                <[string8][Body][SwimmerBody]>
+                <[float64][StationX][  2.1752 1.5091 0.9003 0.1050 -3.1827 ]>
+                <[float64][StationY][  1.2126 1.2126 1.2126 1.2126 1.2126 ]>
+                <[float64][StationZ][  -1.6166 -1.82 -1.82 -1.78 -1.7119 ]>
+                <[float64][StationWidth][  0.08 0.5312 0.5727 0.5442 0.2527 ]>
+                <[float64][StationHeight][  0.03 0.4494 0.4375 0.4055 0.2029 ]>
+                <[uint32][StationShape][  1 1 1 1 1 ]>
+                <[float64][Cdx][ 0.0750 ]>
+                <[float64][Cdy][ 1.0 ]>
+                <[float64][Cdz][ 1.5 ]>
+                <[float64][Cly][ 1.5 ]>
+                <[float64][Clz][ 1.5 ]>
+                <[float64][Cm][ 1.0 ]>
+            >
+			
             // airfoils
             <[airfoil][Flat][]
                 <[float64][Cl0][0.0]>
